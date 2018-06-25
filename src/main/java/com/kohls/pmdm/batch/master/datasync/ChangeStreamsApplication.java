@@ -30,7 +30,7 @@ public class ChangeStreamsApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(ChangeStreamsApplication.class);
 
     private boolean changeStreamEnable = true;
-    private String collectionList = "t0,t1,t2,t3";
+    private String collectionList = "brand";
     private String collectionSuffix = "_coll";
 
     //@Autowired

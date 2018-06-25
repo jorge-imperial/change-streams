@@ -59,7 +59,7 @@ public class ChangeStreamService {
     private static final String PACKGESHPNG_DIMENSION = "skuPackageShippingDimensionList";
 
     //@Autowired
-    CommonProperties commonProperties;
+    CommonProperties commonProperties = new CommonProperties();
 
     //@Autowired
     KafkaProducer kafkaProducer;
@@ -95,6 +95,7 @@ public class ChangeStreamService {
         while (true) {
             try {
                 if (session == null) {
+                    LOGGER.error("We should not be here.****************************************");
                     ClientSessionOptions sessionOptions = ClientSessionOptions.builder().build();
                     session = client.startSession(sessionOptions);
                     LOGGER.info("Initialized session for collection: {}", collectionName);
@@ -113,7 +114,7 @@ public class ChangeStreamService {
 
     private void updateVersionCollection(String collectionName, ClientSession session,
                                          MongoCursor<ChangeStreamDocument<Document>> cursor) throws Exception {
-        String newCollection = collectionName + commonProperties.getCollectionSuffix();
+        String newCollection = collectionName + "_coll"; // commonProperties.getCollectionSuffix();
         ChangeStreamDocument<Document> changeStreamDocument = null;
         ObjectMapper mapper = new ObjectMapper();
         boolean skipToken = false;
@@ -497,6 +498,8 @@ public class ChangeStreamService {
             pojoCodecRegistry = fromRegistries(MongoClient.getDefaultCodecRegistry(),
                     fromProviders(PojoCodecProvider.builder().register(Vendor.class).build()));
         }
-        return pojoCodecRegistry;
+
+
+            return pojoCodecRegistry;
     }
 }
