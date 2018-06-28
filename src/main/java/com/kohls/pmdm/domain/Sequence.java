@@ -1,15 +1,19 @@
 package com.kohls.pmdm.domain;
 
 public class Sequence {
-    public void set_id(String s) {
-        ;
+
+    public String id;
+    public String bsonToken;
+
+    public void set_id(String id) {
+        this.id = id;
     }
 
-    public void setBsonToken(String s) {
-
+    public void setBsonToken(String bsonToken) {
+         this.bsonToken = bsonToken;
     }
 
     public String getBsonToken() {
-        return null;
+        return this.bsonToken;
     }
 }

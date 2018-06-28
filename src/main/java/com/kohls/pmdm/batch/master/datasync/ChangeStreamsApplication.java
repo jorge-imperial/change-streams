@@ -13,7 +13,6 @@ import com.mongodb.session.ClientSession;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -30,7 +29,7 @@ public class ChangeStreamsApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(ChangeStreamsApplication.class);
 
     private boolean changeStreamEnable = true;
-    private String collectionList = "brand";
+    private String collectionList = "Brand,Color,Department,Product,Size";
     private String collectionSuffix = "_coll";
 
     //@Autowired
@@ -41,9 +40,11 @@ public class ChangeStreamsApplication {
     MongoClient client = mongoClientHolder.getClient();
 
 
-    private   ChangeStreamService changeStreamService = new ChangeStreamService();
+    private final ChangeStreamService changeStreamService;
 
-
+    public ChangeStreamsApplication(ChangeStreamService changeStreamService) {
+        this.changeStreamService = changeStreamService;
+    }
 
     public static void main(String[] args) { SpringApplication.run(ChangeStreamsApplication.class, args);}
 

@@ -18,9 +18,6 @@ public class MongoClientHolder {
     }
 
     public MongoDatabase mongoDatabase() {
-        //client = new MongoClient(new MongoClientURI("mongodb://user:password@192.168.1.77:27017/admin"));
-
-
         return db;
     }
 

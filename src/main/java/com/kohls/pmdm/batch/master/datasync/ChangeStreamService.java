@@ -90,12 +90,23 @@ public class ChangeStreamService {
      */
     @Async
     public void pollChangeStream(String collectionName, ClientSession session) {
+
+
+        if (session == null) {
+            LOGGER.error("We should not be here.****************************************");
+            System.exit(1);
+        }
+
         ObjectMapper mapper = new ObjectMapper();
         MongoCursor<ChangeStreamDocument<Document>> cursor = null;
+
+
         while (true) {
             try {
                 if (session == null) {
                     LOGGER.error("We should not be here.****************************************");
+                    System.exit(1);
+
                     ClientSessionOptions sessionOptions = ClientSessionOptions.builder().build();
                     session = client.startSession(sessionOptions);
                     LOGGER.info("Initialized session for collection: {}", collectionName);

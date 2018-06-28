@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 public class CommonProperties {
     public String getCollectionSuffix() {
-        return null;
+        return "_coll";
     }
 
     public boolean isEnableFSKUKafka() {
